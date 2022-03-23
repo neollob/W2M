@@ -1,0 +1,12 @@
+@import 'app/theme/style';
+
+:host {
+  .page-header-inner {
+    background-color: $primary;
+    padding: 16px 20px;
+
+    .page-title {
+      margin: 0;
+    }
+  }
+}
