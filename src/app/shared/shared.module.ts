@@ -10,10 +10,12 @@ const COMPONENTS = [MainHeaderComponent];
 const THIRD_MODULES = [
   FlexLayoutModule,
 ]
+const DIRECTIVES = [NameCaseDirective];
 
 @NgModule({
   declarations: [
     ...COMPONENTS,
+    ...DIRECTIVES
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,7 @@ const THIRD_MODULES = [
     ReactiveFormsModule,
     ...COMPONENTS,
     ...THIRD_MODULES,
+    ...DIRECTIVES
   ]
 })
 export class SharedModule { }
