@@ -1,6 +1,13 @@
 <mat-card>
 
-  <app-hero-search searchField="name" (searchData)="getHeroesByName($event)"></app-hero-search>
+  <div fxLayoutAlign="space-between center">
+    <app-hero-search searchField="nombre" (searchData)="getHeroesByName($event)"></app-hero-search>
+
+    <a class="new-hero" aria-label="Añadir héroe" matTooltip="Añadir héroe" [matTooltipShowDelay]="showDelay.value"
+      matTooltipPosition="before" [matTooltipHideDelay]="hideDelay.value" [routerLink]="['new']">
+      <img src="https://ssl.gstatic.com/docs/templates/thumbnails/sheets-blank-googlecolors.png" alt="">
+    </a>
+  </div>
 
   <mat-list role="list">
     <mat-list-item *ngFor="let hero of displayList;let i=index" role="listitem">
@@ -9,14 +16,12 @@
         <div class="realname" fxFlex>{{hero.realname}}</div>
         <div class="team" fxFlex>{{hero.team}}</div>
         <div class="actions" fxFlex=10>
-          <button mat-icon-button aria-label="Edit Hero" matTooltip="Edit Hero {{hero.name}}"
+          <button mat-icon-button aria-label="Editar héroe" matTooltip="Editar héroe {{hero.name}}"
             [matTooltipShowDelay]="showDelay.value" matTooltipPosition="left" [matTooltipHideDelay]="hideDelay.value"
-            (click)="editHero(hero)">
+            [routerLink]="['edit',hero.id]">
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button aria-label="Delete Hero" matTooltip="Delete Hero {{hero.name}}"
-            matTooltipPosition="right" [matTooltipShowDelay]="showDelay.value" [matTooltipHideDelay]="hideDelay.value"
-            (click)="openDeleteDialog(hero,i)">
+          <button mat-icon-button aria-label="Eliminar héroe" (click)="openDeleteDialog(hero,i)">
             <mat-icon>delete</mat-icon>
           </button>
         </div>
