@@ -2,14 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { MainHeaderComponent } from './components/main-header/main-header.component';
+
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MaterialModule } from './material.module';
+
 import { NameCaseDirective } from './directives/nameCase';
 
-const COMPONENTS = [MainHeaderComponent];
-const THIRD_MODULES = [
-  FlexLayoutModule,
-]
+import { MainHeaderComponent } from './components/main-header/main-header.component';
+import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
+
+const COMPONENTS = [MainHeaderComponent, DeleteDialogComponent];
+const THIRD_MODULES = [FlexLayoutModule]
 const DIRECTIVES = [NameCaseDirective];
 
 @NgModule({
@@ -20,6 +23,7 @@ const DIRECTIVES = [NameCaseDirective];
   imports: [
     CommonModule,
     FormsModule,
+    MaterialModule,
     RouterModule,
     ReactiveFormsModule,
     ...THIRD_MODULES
