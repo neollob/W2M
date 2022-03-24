@@ -21,8 +21,8 @@ export class DeleteDialogComponent implements OnInit {
   ) {
     if (dialogData.type === 'hero') {
       let hero: any = dialogData.element;
-      this.title = 'Delete hero'
-      this.message = `Are you sure you want to delete the hero called "${hero.name}"`
+      this.title = 'Eliminar héroe'
+      this.message = `¿Está seguro de que desea eliminar el héroe llamado "${hero.name}"?`
     }
   }
 
