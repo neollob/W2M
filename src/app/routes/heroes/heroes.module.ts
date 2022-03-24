@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { HeroesRoutingModule } from './heroes-routing.module';
 import { HeroesListComponent } from './components/heroes-list/heroes-list.component';
+import { MaterialModule } from '@shared/material.module';
+import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [
     HeroesListComponent
   ],
   imports: [
-    CommonModule,
-    HeroesRoutingModule
+    SharedModule,
+    HeroesRoutingModule,
+    MaterialModule
   ]
 })
 export class HeroesModule { }

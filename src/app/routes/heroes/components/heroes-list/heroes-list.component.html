@@ -1,1 +1,40 @@
-<p>heroes-list works!</p>
+<mat-card>
+
+  <mat-form-field class="searh-hero" appearance="fill">
+    <mat-label>Search by name</mat-label>
+    <input matInput type="text" [(ngModel)]="heroName" (keyup)="getHeroes(heroName)">
+    <button *ngIf="heroName" matSuffix mat-icon-button aria-label="Clear" (click)="heroName='';getHeroes(heroName)">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-list role="list">
+    <mat-list-item *ngFor="let hero of displayList;let i=index" role="listitem">
+      <div fxLayout="row" fxLayoutAlign="start center" fxFlex>
+        <div class="name" fxFlex>{{hero.name}}</div>
+        <div class="realname" fxFlex>{{hero.realname}}</div>
+        <div class="team" fxFlex>{{hero.team}}</div>
+        <div class="actions" fxFlex=10>
+          <button mat-icon-button aria-label="Edit Hero" matTooltip="Edit Hero {{hero.name}}"
+            [matTooltipShowDelay]="showDelay.value" matTooltipPosition="left" [matTooltipHideDelay]="hideDelay.value"
+            (click)="editHero(hero)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="Delete Hero" matTooltip="Delete Hero {{hero.name}}"
+            matTooltipPosition="right" [matTooltipShowDelay]="showDelay.value" [matTooltipHideDelay]="hideDelay.value"
+            (click)="openDeleteDialog(hero,i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-list-item>
+  </mat-list>
+  <mat-paginator [length]="heroesList.length" [pageSize]="qtyXPage" (page)='paginate($event)'
+    [pageSizeOptions]="quantities" showFirstLastButtons>
+  </mat-paginator>
+
+</mat-card>
+
+<div *ngIf="selectedHero">
+  {{'Option selected: '+(selectedHero|json)}}
+</div>
