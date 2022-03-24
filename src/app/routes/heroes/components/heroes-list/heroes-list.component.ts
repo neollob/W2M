@@ -22,7 +22,8 @@ export class HeroesListComponent implements OnInit {
   public selectedHero: any;
 
   public new: boolean = false;
-  public heroName: string = '';
+
+  public nameSearch: string = 'name';
 
   public showDelay = new FormControl(500);
   public hideDelay = new FormControl(200);
@@ -32,7 +33,7 @@ export class HeroesListComponent implements OnInit {
     public dialog: MatDialog
   ) { }
 
-  getHeroes(name: string = '') {
+  getHeroesByName(name: string = '') {
     this.apiHeroes.getHeroes$(name).subscribe({
       next: u => {
         this.heroesList = u;
@@ -42,7 +43,7 @@ export class HeroesListComponent implements OnInit {
     });
   }
 
-  deleteHero(id: number, index: number) {
+  deleteHero(id: number) {
     this.apiHeroes.deleteHero$(id).subscribe({
       next: arg => {
         this.heroesList = this.heroesList.filter((h: any) => {
@@ -71,7 +72,7 @@ export class HeroesListComponent implements OnInit {
     dialogRef.beforeClosed().subscribe(result => {
       if (result !== undefined) {
         dialogRef.afterClosed().subscribe(res => {
-          this.deleteHero(res.id, index);
+          this.deleteHero(res.id);
         });
       }
     });
@@ -90,7 +91,7 @@ export class HeroesListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getHeroes();
+    this.getHeroesByName();
   }
 
 }

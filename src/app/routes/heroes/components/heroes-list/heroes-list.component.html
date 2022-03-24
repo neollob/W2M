@@ -1,12 +1,6 @@
 <mat-card>
 
-  <mat-form-field class="searh-hero" appearance="fill">
-    <mat-label>Search by name</mat-label>
-    <input matInput type="text" [(ngModel)]="heroName" (keyup)="getHeroes(heroName)">
-    <button *ngIf="heroName" matSuffix mat-icon-button aria-label="Clear" (click)="heroName='';getHeroes(heroName)">
-      <mat-icon>close</mat-icon>
-    </button>
-  </mat-form-field>
+  <app-hero-search searchField="name" (searchData)="getHeroesByName($event)"></app-hero-search>
 
   <mat-list role="list">
     <mat-list-item *ngFor="let hero of displayList;let i=index" role="listitem">
