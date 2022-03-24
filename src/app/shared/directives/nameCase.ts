@@ -7,7 +7,7 @@ export class NameCaseDirective {
 
   constructor(private el: ElementRef) { }
 
-  @HostListener('keyup') onKeyUp() {
+  @HostListener('input') onInput() {
     if (this.el.nativeElement.value) {
       this.el.nativeElement.value = this.el.nativeElement.value.toUpperCase();
     }
