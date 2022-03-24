@@ -25,18 +25,23 @@ export class HeroesListComponent implements OnInit {
 
   public nameSearch: string = 'name';
 
-  public showDelay = new FormControl(500);
+  public showDelay = new FormControl(1000);
   public hideDelay = new FormControl(200);
 
   constructor(
     private apiHeroes: HeroService,
     public dialog: MatDialog
-  ) { }
+  ) {
+    this.apiHeroes.heroes$.subscribe(e => {
+      this.heroesList = e;
+    });
+  }
 
   getHeroesByName(name: string = '') {
     this.apiHeroes.getHeroes$(name).subscribe({
       next: u => {
-        this.heroesList = u;
+        let heroesList: any = u;
+        this.apiHeroes.setHeroes(heroesList);
         this.showList();
       },
       error: err => console.error('Observer got an error: ' + err),
@@ -46,18 +51,14 @@ export class HeroesListComponent implements OnInit {
   deleteHero(id: number) {
     this.apiHeroes.deleteHero$(id).subscribe({
       next: arg => {
-        this.heroesList = this.heroesList.filter((h: any) => {
+        let heroesList: any = this.heroesList.filter((h: any) => {
           return h.id !== id;
         });
+        this.apiHeroes.setHeroes(heroesList);
         this.showList();
       },
       error: err => console.error('Observer got an error: ' + err),
     })
-
-  }
-
-  editHero(hero: Hero) {
-    this.selectedHero = hero;
   }
 
   openDeleteDialog(event: any, index: number): void {
@@ -70,7 +71,7 @@ export class HeroesListComponent implements OnInit {
       },
     });
     dialogRef.beforeClosed().subscribe(result => {
-      if (result !== undefined) {
+      if (result !== '' && result !== undefined) {
         dialogRef.afterClosed().subscribe(res => {
           this.deleteHero(res.id);
         });

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@env/environment';
-import { catchError, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 import { Hero } from '../models/hero.model';
 
 @Injectable({
@@ -10,9 +10,15 @@ import { Hero } from '../models/hero.model';
 export class HeroService {
 
   private apiURL = `${environment.API_URL}heroes`;
+  private heroes: BehaviorSubject<Hero[]> = new BehaviorSubject<Hero[]>([]);
+
+  public heroes$ = this.heroes.asObservable();
 
   constructor(private http: HttpClient) { }
 
+  setHeroes(value: Hero[]) {
+    this.heroes.next(value);
+  }
   getHero$(id: number) {
     const hero = this.http.get<Hero>(`${this.apiURL}/${id}`);
     return hero;
