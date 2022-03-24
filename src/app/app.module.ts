@@ -6,6 +6,7 @@ import { ThemeModule } from '@theme/theme.module';
 import { RoutesModule } from './routes/routes.module';
 import { SharedModule } from '@shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -13,10 +14,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
     RoutesModule,
     ThemeModule,
     SharedModule,
-    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
