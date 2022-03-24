@@ -19,10 +19,6 @@ export class HeroesListComponent implements OnInit {
   public qtyXPage = 4
   public quantities = [4, 8, 24]
 
-  public selectedHero: any;
-
-  public new: boolean = false;
-
   public nameSearch: string = 'name';
 
   public showDelay = new FormControl(1000);
