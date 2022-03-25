@@ -1,4 +1,5 @@
 <app-main-header title={{title}}></app-main-header>
+<app-loading-spinner *ngIf="spinnerActive"></app-loading-spinner>
 <div>
   <router-outlet></router-outlet>
 </div>

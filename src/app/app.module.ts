@@ -6,7 +6,8 @@ import { ThemeModule } from '@theme/theme.module';
 import { RoutesModule } from './routes/routes.module';
 import { SharedModule } from '@shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoadingInterceptor } from '@core/interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { HttpClientModule } from '@angular/common/http';
     ThemeModule,
     SharedModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
