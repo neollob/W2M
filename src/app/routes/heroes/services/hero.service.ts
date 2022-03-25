@@ -19,12 +19,13 @@ export class HeroService {
   setHeroes(value: Hero[]) {
     this.heroes.next(value);
   }
+  
   getHero$(id: number) {
     const hero = this.http.get<Hero>(`${this.apiURL}/${id}`);
     return hero;
   }
 
-  getHeroes$(name: string) {
+  getHeroes$(name: string = '') {
     const heros = this.http.get<Hero>(`${this.apiURL}?name_like=${name}&_sort=name&_order=asc`);
     return heros;
   }
@@ -34,7 +35,7 @@ export class HeroService {
       tap((h: Hero) => console.log(`edited Hero: id=${h.id}`)),
       catchError(err => {
         console.log(err);
-        return throwError(err);
+        return throwError(()=>err);
       })
     );
   }
@@ -46,7 +47,7 @@ export class HeroService {
       }),
       catchError(err => {
         console.log(err);
-        return throwError(err);
+        return throwError(()=>err);
       })
     );
   }
