@@ -5,11 +5,13 @@ import { HeroesListComponent } from './components/heroes-list/heroes-list.compon
 import { MaterialModule } from '@shared/material.module';
 import { SharedModule } from '@shared/shared.module';
 import { HeroSearchComponent } from './components/hero-search/hero-search.component';
+import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
 
 @NgModule({
   declarations: [
     HeroesListComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    HeroDetailComponent
   ],
   imports: [
     SharedModule,

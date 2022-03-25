@@ -1,0 +1,101 @@
+<mat-card>
+
+  <form [formGroup]="heroForm" fxLayout="column" fxLayoutGap="20px">
+
+    <div fxLayoutAlign="start start" fxLayoutGap="15px">
+
+      <div class="image" fxLayout="column" fxLayoutGap="10px" fxFlex>
+        <mat-form-field fxFlex>
+          <mat-label>Imagen del Superhéroe</mat-label>
+          <div fxLayoutAlign="center center">
+            <img [src]="heroForm.value.imageurl" [alt]="heroForm.value.name">
+          </div>
+          <input matInput placeholder="Introduce la url de la imagen del Superhéroe" formControlName="imageurl"
+            type="text">
+          <button mat-button *ngIf="imageurl" matSuffix mat-icon-button aria-label="Clear"
+            (click)="heroForm.patchValue({imageurl:''})">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex fxLayout="column" fxLayoutGap="15px">
+
+        <div fxLayoutAlign="start start" fxLayoutGap="10px">
+          <mat-form-field class="name" fxFlex>
+            <mat-label>Nombre del Superhéroe</mat-label>
+            <input matInput placeholder="Introduce el nombre del Superhéroe" formControlName="name" type="text" required
+              nameCase>
+            <button mat-button *ngIf="name" matSuffix mat-icon-button aria-label="Clear"
+              (click)="heroForm.patchValue({name:''})">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field class="realname" fxFlex>
+            <mat-label>Nombre real</mat-label>
+            <input matInput placeholder="Introduce el nombre real" formControlName="realname" type="text">
+            <button mat-button *ngIf="realname" matSuffix mat-icon-button aria-label="Clear"
+              (click)="heroForm.patchValue({realname:''})">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+        <div fxLayoutAlign="start start" fxLayoutGap="10px">
+          <mat-form-field class="team" fxFlex>
+            <mat-label>Equipo del Superhéroe</mat-label>
+            <input matInput placeholder="Introduce el equipo del Superhéroe" formControlName="team" type="text">
+            <button mat-button *ngIf="team" matSuffix mat-icon-button aria-label="Clear"
+              (click)="heroForm.patchValue({team:''})">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field class="firstappearance" fxFlex>
+            <mat-label>Primera aparición</mat-label>
+            <input matInput placeholder="Introduce el año de la primera aparición" formControlName="firstappearance"
+              type="text">
+            <button mat-button *ngIf="firstappearance" matSuffix mat-icon-button aria-label="Clear"
+              (click)="heroForm.patchValue({firstappearance:''})">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+        <div fxLayoutAlign="start start" fxLayoutGap="10px">
+          <mat-form-field class="createdby" fxFlex>
+            <mat-label>Creador/a/es/as</mat-label>
+            <input matInput placeholder="Introduce el nombre del creador/a/es/as" formControlName="createdby"
+              type="text">
+            <button mat-button *ngIf="createdby" matSuffix mat-icon-button aria-label="Clear"
+              (click)="heroForm.patchValue({createdby:''})">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field class="publisher" fxFlex>
+            <mat-label>Editorial</mat-label>
+            <input matInput placeholder="Introduce el nombre real" formControlName="publisher" type="text">
+            <button mat-button *ngIf="publisher" matSuffix mat-icon-button aria-label="Clear"
+              (click)="heroForm.patchValue({publisher:''})">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field class="full-width">
+          <mat-label>Biografía</mat-label>
+          <textarea placeholder="Introduce la biografía del Superhéroe" matInput cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2" cdkAutosizeMaxRows="15"
+            formControlName="bio"></textarea>
+        </mat-form-field>
+
+      </div>
+
+    </div>
+  </form>
+
+  <div class="actions" fxLayoutGap="15px" fxLayoutAlign="end center">
+    <button mat-stroked-button color="primary" disabled={{!heroForm.valid}} (click)="saveHero()">Guardar</button>
+    <button mat-stroked-button [routerLink]="['/heroes']">Cancelar</button>
+  </div>
+
+</mat-card>

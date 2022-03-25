@@ -1,0 +1,18 @@
+:host {
+  mat-card {
+    margin: 15px;
+
+    .image {
+      img {
+        margin-bottom: 15px;
+        max-width: 45vw
+      }
+    }
+
+    .actions {
+      button {
+        width: 100px;
+      }
+    }
+  }
+}
