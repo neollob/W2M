@@ -12,7 +12,7 @@ import { HeroService } from '../../services/hero.service';
   styleUrls: ['./heroes-list.component.scss']
 })
 export class HeroesListComponent implements OnInit {
-  public heroesList: any = [];
+  public heroesList: Hero[] = [];
 
   public displayList: Hero[] = [];
 
