@@ -1,5 +1,5 @@
 export interface Hero {
-  id: number | undefined;
+  id: number;
   name: string | '';
   realname: string | '';
   team: string | '';

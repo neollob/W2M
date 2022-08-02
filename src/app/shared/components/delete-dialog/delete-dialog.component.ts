@@ -1,8 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Hero } from 'app/routes/heroes/models/hero.model';
 
 export interface DialogData {
-  element: any;
+  element: Hero;
   type: string;
 }
 
@@ -20,13 +21,13 @@ export class DeleteDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public dialogData: DialogData
   ) {
     if (dialogData.type === 'hero') {
-      let hero: any = dialogData.element;
+      let hero: Hero = dialogData.element;
       this.title = 'Eliminar héroe'
       this.message = `¿Está seguro de que desea eliminar el héroe llamado "${hero.name}"?`
     }
   }
 
-  closeDialog(element = null) {
+  closeDialog(element: Hero) {
     this.dialogRef.close(element);
   }
 

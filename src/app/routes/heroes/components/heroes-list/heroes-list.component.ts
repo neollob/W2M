@@ -47,7 +47,7 @@ export class HeroesListComponent implements OnDestroy, OnInit {
   getHeroesByName(name: string = '') {
     this.apiHeroes.getHeroes$(name).subscribe({
       next: u => {
-        let heroesList: any = u;
+        let heroesList: Hero[] = u;
         this.apiHeroes.setHeroes(heroesList);
         this.showList();
       },
@@ -58,7 +58,7 @@ export class HeroesListComponent implements OnDestroy, OnInit {
   deleteHero(id: number) {
     this.apiHeroes.deleteHero$(id).subscribe({
       next: arg => {
-        let heroesList: any = this.heroesList.filter((h: any) => {
+        let heroesList: Hero[] = this.heroesList.filter((h: Hero) => {
           return h.id !== id;
         });
         this.apiHeroes.setHeroes(heroesList);
@@ -68,7 +68,7 @@ export class HeroesListComponent implements OnDestroy, OnInit {
     })
   }
 
-  openDeleteDialog(event: any, index: number): void {
+  openDeleteDialog(event: Hero): void {
     const dialogRef = this.dialog.open(DeleteDialogComponent, {
       minWidth: '450px',
       maxHeight: '85vh',

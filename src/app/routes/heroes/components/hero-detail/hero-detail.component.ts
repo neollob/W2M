@@ -68,7 +68,7 @@ export class HeroDetailComponent implements OnInit {
   getNewId() {
     this.apiHero.getHeroes$().subscribe({
       next: heroes => {
-        let totalHeroes: any = heroes;
+        let totalHeroes: Hero[] = heroes;
         let max = Math.max.apply(Math, totalHeroes.map((h: Hero) => { return h.id; }));
         this.newId = max + 1;
       }
