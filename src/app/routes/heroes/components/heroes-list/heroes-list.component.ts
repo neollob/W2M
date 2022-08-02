@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { FormControl } from '@angular/forms';
 
 import { DeleteDialogComponent } from '@shared/components/delete-dialog/delete-dialog.component';
 import { Hero } from '../../models/hero.model';
 import { HeroService } from '../../services/hero.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-heroes-list',
   templateUrl: './heroes-list.component.html',
   styleUrls: ['./heroes-list.component.scss']
 })
-export class HeroesListComponent implements OnInit {
+export class HeroesListComponent implements OnDestroy, OnInit {
   public heroesList: Hero[] = [];
 
   public displayList: Hero[] = [];
@@ -24,13 +25,23 @@ export class HeroesListComponent implements OnInit {
   public showDelay = new FormControl(1000);
   public hideDelay = new FormControl(200);
 
+  private destroy$: Subject<boolean> = new Subject();
+
   constructor(
     private apiHeroes: HeroService,
     public dialog: MatDialog
   ) {
-    this.apiHeroes.heroes$.subscribe(e => {
+    this.apiHeroes.heroes$.pipe(takeUntil(this.destroy$)).subscribe(e => {
       this.heroesList = e;
     });
+  }
+
+  ngOnInit(): void {
+    this.getHeroesByName();
+  }
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 
   getHeroesByName(name: string = '') {
@@ -66,9 +77,9 @@ export class HeroesListComponent implements OnInit {
         type: 'hero'
       },
     });
-    dialogRef.beforeClosed().subscribe(result => {
+    dialogRef.beforeClosed().pipe(takeUntil(this.destroy$)).subscribe(result => {
       if (result !== '' && result !== undefined) {
-        dialogRef.afterClosed().subscribe(res => {
+        dialogRef.afterClosed().pipe(takeUntil(this.destroy$)).subscribe(res => {
           this.deleteHero(res.id);
         });
       }
@@ -87,8 +98,5 @@ export class HeroesListComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
-    this.getHeroesByName();
-  }
 
 }
