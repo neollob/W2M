@@ -57,6 +57,15 @@ export class HeroDetailComponent implements OnInit {
     return this.heroForm.get('bio');
   }
 
+  ngOnInit(): void {
+    this.identifier = this.route.snapshot.params['id'];
+    if (this.identifier) {
+      this.getHero(this.identifier);
+    } else {
+      this.getNewId();
+    }
+  }
+
   getHero(id: number) {
     this.apiHero.getHero$(id).subscribe({
       next: hero => {
@@ -130,12 +139,4 @@ export class HeroDetailComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-    this.identifier = this.route.snapshot.params['id'];
-    if (this.identifier) {
-      this.getHero(this.identifier);
-    } else {
-      this.getNewId();
-    }
-  }
 }

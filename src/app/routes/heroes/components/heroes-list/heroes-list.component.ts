@@ -39,6 +39,7 @@ export class HeroesListComponent implements OnDestroy, OnInit {
   ngOnInit(): void {
     this.getHeroesByName();
   }
+
   ngOnDestroy(): void {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();

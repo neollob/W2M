@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Hero } from 'app/routes/heroes/models/hero.model';
 
@@ -12,7 +12,7 @@ export interface DialogData {
   templateUrl: './delete-dialog.component.html',
   styleUrls: ['./delete-dialog.component.scss']
 })
-export class DeleteDialogComponent implements OnInit {
+export class DeleteDialogComponent {
   public title: string = '';
   public message: string = '';
 
@@ -29,9 +29,6 @@ export class DeleteDialogComponent implements OnInit {
 
   closeDialog(element: Hero) {
     this.dialogRef.close(element);
-  }
-
-  ngOnInit(): void {
   }
 
 }
