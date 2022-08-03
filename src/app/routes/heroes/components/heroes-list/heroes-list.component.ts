@@ -78,9 +78,9 @@ export class HeroesListComponent implements OnDestroy, OnInit {
         type: 'hero'
       },
     });
-    dialogRef.beforeClosed().pipe(takeUntil(this.destroy$)).subscribe(result => {
+    dialogRef.beforeClosed().subscribe(result => {
       if (result !== '' && result !== undefined) {
-        dialogRef.afterClosed().pipe(takeUntil(this.destroy$)).subscribe(res => {
+        dialogRef.afterClosed().subscribe(res => {
           this.deleteHero(res.id);
         });
       }
