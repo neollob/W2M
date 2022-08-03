@@ -26,8 +26,10 @@ export class HeroService {
   }
 
   getHeroes$(name: string = '') {
-    const heros = this.http.get<Hero[]>(`${this.apiURL}?name_like=${name}&_sort=name&_order=asc`);
-    return heros;
+    const heroes = this.http.get<Hero[]>(`${this.apiURL}?name_like=${name}&_sort=name&_order=asc`).pipe(
+      tap((h: Hero[]) => this.setHeroes(h))
+    );
+    return heroes;
   }
 
   editHero$(hero: Hero) {

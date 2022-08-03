@@ -48,8 +48,6 @@ export class HeroesListComponent implements OnDestroy, OnInit {
   getHeroesByName(name: string = '') {
     this.apiHeroes.getHeroes$(name).subscribe({
       next: u => {
-        let heroesList: Hero[] = u;
-        this.apiHeroes.setHeroes(heroesList);
         this.showList();
       },
       error: err => console.error('Observer got an error: ' + err),
