@@ -6,14 +6,11 @@
   </div>
 </ng-container>
 <ng-template #progressSpinner>
-  <mat-progress-spinner class="track1"
-                        mode="determinate" value="100">
-  </mat-progress-spinner>
-  <mat-progress-spinner class="track2"
-                        [diameter]="diameter"
-                        [mode]="mode"
-                        [color]="color"
-                        [strokeWidth]="strokeWidth"
-                        [value]="value">
-  </mat-progress-spinner>
+  <div *ngIf="spinnerActive">
+    <mat-progress-spinner class="track1" mode="determinate" value="100">
+    </mat-progress-spinner>
+    <mat-progress-spinner class="track2" [diameter]="diameter" [mode]="mode" [color]="color" [strokeWidth]="strokeWidth"
+      [value]="value">
+    </mat-progress-spinner>
+  </div>
 </ng-template>

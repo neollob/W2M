@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
+import { LoadingSpinnerService } from '@core/services/loading-spinner.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-loading-spinner',
@@ -14,6 +16,20 @@ export class LoadingSpinnerComponent {
   @Input() overlay: boolean = false;
   @Input() color = 'primary';
 
-  constructor() { }
+  private showSpinnerSubscription!: Subscription;
+
+  public spinnerActive: boolean = true;
+
+  constructor(public spinner: LoadingSpinnerService) {
+    this.showSpinnerSubscription = this.spinner.showSpinner.subscribe(this.showSpinner.bind(this));
+  }
+
+  showSpinner = (state: boolean): void => {
+    this.spinnerActive = state;
+  };
+
+  ngOnDestroy(): void {
+    if (this.showSpinnerSubscription) this.showSpinnerSubscription.unsubscribe();
+  }
 
 }
