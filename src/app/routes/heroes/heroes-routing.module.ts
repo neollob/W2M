@@ -3,10 +3,17 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HeroesListComponent } from './components/heroes-list/heroes-list.component';
 import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
+import { HeroResolver } from './services/hero.resolver';
 
 const routes: Routes = [
   { path: '', component: HeroesListComponent },
-  { path: 'edit/:id', component: HeroDetailComponent },
+  {
+    path: 'edit/:id',
+    component: HeroDetailComponent,
+    resolve: {
+      hero: HeroResolver
+    }
+  },
   { path: 'new', component: HeroDetailComponent },
 ];
 

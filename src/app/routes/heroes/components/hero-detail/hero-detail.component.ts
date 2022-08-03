@@ -16,6 +16,7 @@ export class HeroDetailComponent implements OnInit {
 
   constructor(
     private apiHero: HeroService,
+    private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     public route: ActivatedRoute,
     private router: Router
@@ -58,20 +59,12 @@ export class HeroDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.identifier = this.route.snapshot.params['id'];
-    if (this.identifier) {
-      this.getHero(this.identifier);
-    } else {
-      this.getNewId();
-    }
-  }
-
-  getHero(id: number) {
-    this.apiHero.getHero$(id).subscribe({
-      next: hero => {
-        this.setForm(hero);
+    this.activatedRoute.data.subscribe(
+      (response) => {
+        if (response['hero']) this.setForm(response['hero']);
+        else this.getNewId();
       }
-    })
+    );
   }
 
   getNewId() {
