@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HeroesListComponent } from './components/heroes-list/heroes-list.component';
 import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
-import { HeroResolver } from './services/hero.resolver';
+import { HeroResolver } from './resolvers/hero.resolver';
 
 const routes: Routes = [
   { path: '', component: HeroesListComponent },

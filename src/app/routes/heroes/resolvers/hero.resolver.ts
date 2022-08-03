@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Hero } from '../models/hero.model';
-import { HeroService } from './hero.service';
+import { HeroService } from '../services/hero.service';
 
 @Injectable({
   providedIn: 'root'
