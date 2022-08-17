@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Hero } from '../../models/hero.model';
 import { HeroService } from '../../services/hero.service';
@@ -10,14 +10,14 @@ import { HeroService } from '../../services/hero.service';
   styleUrls: ['./hero-detail.component.scss']
 })
 export class HeroDetailComponent implements OnInit {
-  public heroForm: FormGroup;
+  public heroForm: UntypedFormGroup;
   private identifier: number = 0;
   private newId: number = 0;
 
   constructor(
     private apiHero: HeroService,
     private activatedRoute: ActivatedRoute,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     public route: ActivatedRoute,
     private router: Router
   ) {

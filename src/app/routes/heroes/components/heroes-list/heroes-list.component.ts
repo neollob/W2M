@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 import { DeleteDialogComponent } from '@shared/components/delete-dialog/delete-dialog.component';
 import { Hero } from '../../models/hero.model';
@@ -22,8 +22,8 @@ export class HeroesListComponent implements OnDestroy, OnInit {
 
   public nameSearch: string = 'name';
 
-  public showDelay = new FormControl(1000);
-  public hideDelay = new FormControl(200);
+  public showDelay = new UntypedFormControl(1000);
+  public hideDelay = new UntypedFormControl(200);
 
   private destroy$: Subject<boolean> = new Subject();
 
